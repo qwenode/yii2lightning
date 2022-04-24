@@ -1,0 +1,25 @@
+{
+  "name": "qwenode/yii2lightning",
+  "description": "description",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "qwenode"
+    }
+  ],
+  "require": {
+    "yiisoft/yii2": "*"
+  },
+  "require-dev": {
+    "yiisoft/yii2-redis": "*",
+    "yidas/yii2-composer-bower-skip": "~2.0.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "qwenode\\yii2lightning\\": "src/"
+    },
+    "files": [
+      "src/quick_const.php"
+    ]
+  }
+}
