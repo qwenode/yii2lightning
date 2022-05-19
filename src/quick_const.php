@@ -25,7 +25,9 @@ const VIEW_PLACEHOLDER     = 'placeholder';
 
 const VIEW_ENCTYPE                    = 'enctype';
 const VIEW_ENCTYPE_MULTIPART_FORMDATA = 'multipart/form-data';
-const VIEW_FORM_UPLOAD_OPTIONS        = [VIEW_ENCTYPE => VIEW_ENCTYPE_MULTIPART_FORMDATA];//ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data']])
+const VIEW_FORM_UPLOAD_OPTIONS        = [
+    VIEW_ENCTYPE => VIEW_ENCTYPE_MULTIPART_FORMDATA
+];//ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data']])
 
 //model 部分
 const MODEL_RULE_REQUIRED                = 'required';
