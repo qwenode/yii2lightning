@@ -46,6 +46,6 @@ const MODEL_RULE_EMAIL                   = 'email';
 const MODEL_RULE_WHEN                    = 'when';
 const MODEL_RULE_FILTER                  = 'filter';
 const MODEL_RULE_INTEGER_MIN             = 'min';
-const MODEL_RULE_INTEGER_MAX             = 'max';
-
+const MODEL_RULE_INTEGER_MAX = 'max';
+const MODEL_QUERY_BETWEEN = 'between';
 
