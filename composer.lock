@@ -4,7 +4,7 @@
     "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
     "This file is @generated automatically"
   ],
-  "content-hash": "f950171d9ee0eec7a81cc512f313e969",
+  "content-hash": "3a312f6396d9e5a6056e4964c7176418",
   "packages": [
     {
       "name": "cebe/markdown",
@@ -16,16 +16,16 @@
       },
       "dist": {
         "type": "zip",
-                "url": "https://api.github.com/repos/cebe/markdown/zipball/9bac5e971dd391e2802dca5400bbeacbaea9eb86",
-                "reference": "9bac5e971dd391e2802dca5400bbeacbaea9eb86",
-                "shasum": "",
-                "mirrors": [
-                    {
-                        "url": "https://mirrors.aliyun.com/composer/dists/%package%/%reference%.%type%",
-                        "preferred": true
-                    }
-                ]
-            },
+        "url": "https://api.github.com/repos/cebe/markdown/zipball/9bac5e971dd391e2802dca5400bbeacbaea9eb86",
+        "reference": "9bac5e971dd391e2802dca5400bbeacbaea9eb86",
+        "shasum": "",
+        "mirrors": [
+          {
+            "url": "https://mirrors.aliyun.com/composer/dists/%package%/%reference%.%type%",
+            "preferred": true
+          }
+        ]
+      },
             "require": {
                 "lib-pcre": "*",
                 "php": ">=5.4.0"
@@ -51,16 +51,16 @@
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
-                "MIT"
+              "MIT"
             ],
-            "authors": [
-                {
-                    "name": "Carsten Brandt",
-                    "email": "mail@cebe.cc",
-                    "homepage": "http://cebe.cc/",
-                    "role": "Creator"
-                }
-            ],
+      "authors": [
+        {
+          "name": "Carsten Brandt",
+          "email": "mail@cebe.cc",
+          "homepage": "http://cebe.cc/",
+          "role": "Creator"
+        }
+      ],
       "description": "A super fast, highly extensible markdown parser for PHP",
       "homepage": "https://github.com/cebe/markdown#readme",
       "keywords": [
@@ -76,16 +76,16 @@
       },
       "time": "2018-03-26T11:24:36+00:00"
     },
-        {
-            "name": "ezyang/htmlpurifier",
-            "version": "v4.13.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/ezyang/htmlpurifier.git",
-                "reference": "08e27c97e4c6ed02f37c5b2b20488046c8d90d75"
-            },
-            "dist": {
-                "type": "zip",
+    {
+      "name": "ezyang/htmlpurifier",
+      "version": "v4.13.0",
+      "source": {
+        "type": "git",
+        "url": "https://github.com/ezyang/htmlpurifier.git",
+        "reference": "08e27c97e4c6ed02f37c5b2b20488046c8d90d75"
+      },
+      "dist": {
+        "type": "zip",
                 "url": "https://api.github.com/repos/ezyang/htmlpurifier/zipball/08e27c97e4c6ed02f37c5b2b20488046c8d90d75",
                 "reference": "08e27c97e4c6ed02f37c5b2b20488046c8d90d75",
                 "shasum": "",
@@ -115,27 +115,27 @@
                 ]
             },
             "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "LGPL-2.1-or-later"
-            ],
-            "authors": [
-                {
-                  "name": "Edward Z. Yang",
-                  "email": "admin@htmlpurifier.org",
-                  "homepage": "http://ezyang.com"
-                }
-            ],
-          "description": "Standards compliant HTML filter written in PHP",
-          "homepage": "http://htmlpurifier.org/",
-          "keywords": [
-            "html"
-          ],
-          "support": {
-            "issues": "https://github.com/ezyang/htmlpurifier/issues",
-            "source": "https://github.com/ezyang/htmlpurifier/tree/master"
-          },
-          "time": "2020-06-29T00:56:53+00:00"
-        },
+      "license": [
+        "LGPL-2.1-or-later"
+      ],
+      "authors": [
+        {
+          "name": "Edward Z. Yang",
+          "email": "admin@htmlpurifier.org",
+          "homepage": "http://ezyang.com"
+        }
+      ],
+      "description": "Standards compliant HTML filter written in PHP",
+      "homepage": "http://htmlpurifier.org/",
+      "keywords": [
+        "html"
+      ],
+      "support": {
+        "issues": "https://github.com/ezyang/htmlpurifier/issues",
+        "source": "https://github.com/ezyang/htmlpurifier/tree/master"
+      },
+      "time": "2020-06-29T00:56:53+00:00"
+    },
     {
       "name": "paragonie/random_compat",
       "version": "v9.99.100",
@@ -191,6 +191,54 @@
         "source": "https://github.com/paragonie/random_compat"
       },
       "time": "2020-10-15T08:29:30+00:00"
+    },
+    {
+      "name": "qwenode/qwephp",
+      "version": "2.0.0",
+      "source": {
+        "type": "git",
+        "url": "https://github.com/qwenode/qwephp.git",
+        "reference": "fc25142f44401ae78467a8241af3110a4066bc84"
+      },
+      "dist": {
+        "type": "zip",
+        "url": "https://api.github.com/repos/qwenode/qwephp/zipball/fc25142f44401ae78467a8241af3110a4066bc84",
+        "reference": "fc25142f44401ae78467a8241af3110a4066bc84",
+        "shasum": ""
+      },
+      "require": {
+        "php": ">=8.0"
+      },
+      "require-dev": {
+        "codeception/codeception": ">=4.1",
+        "codeception/module-asserts": ">=1.0.0",
+        "codeception/module-phpbrowser": ">=1.0.0"
+      },
+      "type": "library",
+      "autoload": {
+        "files": [
+          "src/functions.php"
+        ],
+        "psr-4": {
+          "qwephp\\": "src/"
+        }
+      },
+      "notification-url": "https://packagist.org/downloads/",
+      "license": [
+        "MIT"
+      ],
+      "authors": [
+        {
+          "name": "qwenode",
+          "email": "dtfreemandev@gmail.com"
+        }
+      ],
+      "description": "an php utility library",
+      "support": {
+        "issues": "https://github.com/qwenode/qwephp/issues",
+        "source": "https://github.com/qwenode/qwephp/tree/2.0.0"
+      },
+      "time": "2022-06-17T06:59:51+00:00"
     },
     {
       "name": "yidas/yii2-composer-bower-skip",
@@ -272,16 +320,16 @@
         "php": ">=5.4.0",
         "yiisoft/yii2-composer": "~2.0.4"
       },
-            "bin": [
-                "yii"
-            ],
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "2.0.x-dev"
-                }
-            },
-            "autoload": {
+      "bin": [
+        "yii"
+      ],
+      "type": "library",
+      "extra": {
+        "branch-alias": {
+          "dev-master": "2.0.x-dev"
+        }
+      },
+      "autoload": {
                 "psr-4": {
                     "yii\\": ""
                 }
@@ -303,33 +351,33 @@
                 "homepage": "https://rmcreative.ru/",
                 "role": "Core framework development"
               },
-                {
-                    "name": "Maurizio Domba",
-                    "homepage": "http://mdomba.info/",
-                    "role": "Core framework development"
-                },
+              {
+                "name": "Maurizio Domba",
+                "homepage": "http://mdomba.info/",
+                "role": "Core framework development"
+              },
               {
                 "name": "Carsten Brandt",
                 "email": "mail@cebe.cc",
                 "homepage": "https://cebe.cc/",
                 "role": "Core framework development"
               },
-                {
-                    "name": "Timur Ruziev",
-                    "email": "resurtm@gmail.com",
-                    "homepage": "http://resurtm.com/",
-                    "role": "Core framework development"
-                },
-                {
-                    "name": "Paul Klimov",
-                    "email": "klimov.paul@gmail.com",
-                    "role": "Core framework development"
-                },
-                {
-                    "name": "Dmitry Naumenko",
-                  "email": "d.naumenko.a@gmail.com",
-                  "role": "Core framework development"
-                },
+              {
+                "name": "Timur Ruziev",
+                "email": "resurtm@gmail.com",
+                "homepage": "http://resurtm.com/",
+                "role": "Core framework development"
+              },
+              {
+                "name": "Paul Klimov",
+                "email": "klimov.paul@gmail.com",
+                "role": "Core framework development"
+              },
+              {
+                "name": "Dmitry Naumenko",
+                "email": "d.naumenko.a@gmail.com",
+                "role": "Core framework development"
+              },
               {
                 "name": "Boudewijn Vahrmeijer",
                 "email": "info@dynasource.eu",
@@ -376,16 +424,16 @@
       },
       "dist": {
         "type": "zip",
-                "url": "https://api.github.com/repos/yiisoft/yii2-composer/zipball/94bb3f66e779e2774f8776d6e1bdeab402940510",
-                "reference": "94bb3f66e779e2774f8776d6e1bdeab402940510",
-                "shasum": "",
-                "mirrors": [
-                    {
-                        "url": "https://mirrors.aliyun.com/composer/dists/%package%/%reference%.%type%",
-                        "preferred": true
-                    }
-                ]
-            },
+        "url": "https://api.github.com/repos/yiisoft/yii2-composer/zipball/94bb3f66e779e2774f8776d6e1bdeab402940510",
+        "reference": "94bb3f66e779e2774f8776d6e1bdeab402940510",
+        "shasum": "",
+        "mirrors": [
+          {
+            "url": "https://mirrors.aliyun.com/composer/dists/%package%/%reference%.%type%",
+            "preferred": true
+          }
+        ]
+      },
             "require": {
                 "composer-plugin-api": "^1.0 | ^2.0"
             },
@@ -400,15 +448,15 @@
                     "dev-master": "2.0.x-dev"
                 }
             },
-            "autoload": {
-                "psr-4": {
-                    "yii\\composer\\": ""
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "BSD-3-Clause"
-            ],
+      "autoload": {
+        "psr-4": {
+          "yii\\composer\\": ""
+        }
+      },
+      "notification-url": "https://packagist.org/downloads/",
+      "license": [
+        "BSD-3-Clause"
+      ],
       "authors": [
         {
           "name": "Qiang Xue",
@@ -538,5 +586,5 @@
   "prefer-lowest": false,
   "platform": [],
   "platform-dev": [],
-  "plugin-api-version": "2.1.0"
+  "plugin-api-version": "2.3.0"
 }
