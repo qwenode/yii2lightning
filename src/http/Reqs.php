@@ -60,6 +60,36 @@ class Reqs
     }
 
     /**
+     * check the name whether is exists in $_GET array
+     * @param string $name
+     * @return bool
+     */
+    public static function hasGet(string $name): bool
+    {
+        return isset($_GET[$name]);
+    }
+
+    /**
+     * check the name whether is exists in $_POST array
+     * @param string $name
+     * @return bool
+     */
+    public static function hasPost(string $name): bool
+    {
+        return isset($_POST[$name]);
+    }
+
+    /**
+     * check the name whether is exists in $_FILES array
+     * @param string $name
+     * @return bool
+     */
+    public static function hasFile(string $name): bool
+    {
+        return isset($_FILES[$name]);
+    }
+
+    /**
      * @param null $name
      * @param null $default
      * @return array|mixed
