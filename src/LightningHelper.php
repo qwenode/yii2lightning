@@ -46,6 +46,26 @@ class LightningHelper
     }
 
     /**
+     * @param callable $f
+     * @param string $key
+     * @param int $duration
+     * @return false|mixed
+     */
+    public static function cacheWith(callable $f, string $key, int $duration = 86400): mixed
+    {
+        $cache  = LightningHelper::getCache();
+        $result = $cache->get($key);
+        if ($result !== false) {
+            return $result;
+        }
+        $result = call_user_func($f);
+        if ($result !== false) {
+            $cache->set($key, $result, $duration);
+        }
+        return $result;
+    }
+
+    /**
      * 跳转到上一页
      * @param null $errorMessage 错误消息
      * @return Response
