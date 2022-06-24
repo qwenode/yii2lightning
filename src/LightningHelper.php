@@ -51,7 +51,7 @@ class LightningHelper
      * @param int $duration
      * @return false|mixed
      */
-    public static function cacheWith(callable $f, string $key, int $duration = 86400): mixed
+    public static function withCache(callable $f, string $key, int $duration = 86400): mixed
     {
         $cache  = LightningHelper::getCache();
         $result = $cache->get($key);
