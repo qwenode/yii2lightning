@@ -16,7 +16,7 @@ class ModelHelper
      * @param Model $model
      * @return array|mixed|string
      */
-    public static function getMessage(Model $model)
+    public static function getMessage(Model $model): mixed
     {
         $message = '';
         if (!$model->hasErrors()) {
@@ -37,7 +37,7 @@ class ModelHelper
      * @param Model $model
      * @throws ErrorException
      */
-    public static function throwIfError(Model $model)
+    public static function throwIfError(Model $model): void
     {
         $message = self::getMessage($model);
         if ($message != '') {
@@ -50,7 +50,7 @@ class ModelHelper
      * @param $model
      * @throws ErrorException
      */
-    public static function throwIfNull($model, $message = null)
+    public static function throwIfNull($model, $message = null): void
     {
         if ($message == null) {
             $message = '数据不存在';
@@ -71,7 +71,7 @@ class ModelHelper
      * @param $property
      * @return mixed|string
      */
-    public static function getPropertyValueOrZero($model, $property)
+    public static function getPropertyValueOrZero($model, $property): mixed
     {
         return self::getPropertyValue($model, $property, 0);
     }
@@ -81,7 +81,7 @@ class ModelHelper
      * @param $property
      * @return mixed|string
      */
-    public static function getPropertyValueOrNull($model, $property)
+    public static function getPropertyValueOrNull($model, $property): mixed
     {
         return self::getPropertyValue($model, $property, null);
     }
@@ -91,7 +91,7 @@ class ModelHelper
      * @param $property
      * @return mixed|string
      */
-    public static function getPropertyValueOrNullString($model, $property)
+    public static function getPropertyValueOrNullString($model, $property): mixed
     {
         return self::getPropertyValue($model, $property, '');
     }
@@ -99,10 +99,10 @@ class ModelHelper
     /**
      * @param $model
      * @param $property
-     * @param mixed $default
+     * @param mixed|string $default
      * @return mixed|string
      */
-    public static function getPropertyValue($model, $property, $default = '')
+    public static function getPropertyValue($model, $property, $default = ''): mixed
     {
         if (!$model instanceof BaseObject) {
             return $default;

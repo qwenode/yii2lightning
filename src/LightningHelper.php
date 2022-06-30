@@ -11,6 +11,7 @@ use Yii;
 use yii\base\InvalidConfigException;
 use yii\base\Security;
 use yii\caching\CacheInterface;
+use yii\queue\Queue;
 use yii\redis\Connection;
 use yii\redis\SocketException;
 use yii\web\Application;
@@ -36,6 +37,9 @@ class LightningHelper
         return Yii::$app->response->refresh($anchor);
     }
 
+    /**
+     * @return string|null
+     */
     public static function getReturnUrl()
     {
         $referrer = self::getRequest()->getReferrer();
@@ -43,6 +47,15 @@ class LightningHelper
             $referrer = '/';
         }
         return $referrer;
+    }
+
+    /**
+     * @return Queue
+     * @throws InvalidConfigException
+     */
+    public static function getQueue(): Queue
+    {
+        return LightningHelper::getApplication()->get('queue');
     }
 
     /**

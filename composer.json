@@ -10,7 +10,8 @@
   "require": {
     "php": ">=8.0",
     "yiisoft/yii2": "*",
-    "qwenode/qwephp": "^2.0"
+    "qwenode/qwephp": "^2.0",
+    "yiisoft/yii2-queue": "^2.3"
   },
   "require-dev": {
     "yiisoft/yii2-redis": "*",
