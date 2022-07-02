@@ -8,6 +8,7 @@ class Resp
 {
     /**
      * @param array|mixed $data
+     * @param string $msg
      * @return array
      */
     public static function data($data, $msg = 'ok')
