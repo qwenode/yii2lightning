@@ -10,11 +10,11 @@ class Resp
      * @param array|mixed $data
      * @return array
      */
-    public static function data($data)
+    public static function data($data, $msg = 'ok')
     {
         return [
             'code' => 1,
-            'msg'  => 'ok',
+            'msg'  => $msg,
             'data' => $data,
         ];
     }
