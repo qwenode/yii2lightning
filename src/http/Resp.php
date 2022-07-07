@@ -4,8 +4,16 @@
 namespace qwenode\yii2lightning\http;
 
 
+use qwenode\yii2lightning\LightningHelper;
+use yii\console\Response;
+
 class Resp
 {
+    public static function response(): \yii\web\Response|Response
+    {
+        return LightningHelper::getResponse();
+    }
+
     /**
      * @param array|mixed $data
      * @param string $msg

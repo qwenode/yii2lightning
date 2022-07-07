@@ -8,6 +8,7 @@ use yii\base\Model;
 
 /**
  * yii2 model helper
+ * @deprecated see LightningHelper
  */
 class ModelHelper
 {

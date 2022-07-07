@@ -7,6 +7,7 @@ namespace qwenode\yii2lightning\http;
 use ErrorException;
 use qwenode\yii2lightning\LightningHelper;
 use qwephp\Number;
+use yii\web\Request;
 
 /**
  * yii request 快捷方式
@@ -15,6 +16,14 @@ use qwephp\Number;
  */
 class Reqs
 {
+    /**
+     * @return \yii\console\Request|Request
+     */
+    public static function request()
+    {
+        return LightningHelper::getRequest();
+    }
+
     /**
      * @return bool
      */

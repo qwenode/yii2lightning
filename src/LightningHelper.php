@@ -4,11 +4,13 @@
 namespace qwenode\yii2lightning;
 
 
+use ErrorException;
 use Exception;
 use Redis;
 use Throwable;
 use Yii;
 use yii\base\InvalidConfigException;
+use yii\base\Model;
 use yii\base\Security;
 use yii\caching\CacheInterface;
 use yii\queue\Queue;
@@ -35,6 +37,87 @@ class LightningHelper
     public static function refresh($anchor = '')
     {
         return Yii::$app->response->refresh($anchor);
+    }
+
+    /**
+     * @param string $message
+     * @param ...$params
+     * @return string
+     */
+    public static function message(string $message, ...$params): string
+    {
+        $explode = explode('{}', $message);
+        $newMsg  = '';
+        foreach ($explode as $k => $value) {
+            $newMsg .= $value;
+            if (isset($params[$k])) {
+                $fillValue = $params[$k];
+                if (is_array($fillValue)) {
+                    $fillValue = json_encode($fillValue);
+                }
+                $newMsg .= $fillValue;
+            }
+        }
+        return $newMsg;
+    }
+
+    /**
+     * get one model error message
+     * @param Model $model
+     * @return array|mixed|string
+     */
+    public static function getMessage(Model $model): mixed
+    {
+        $message = '';
+        if (!$model->hasErrors()) {
+            return $message;
+        }
+        $messages = $model->getFirstErrors();
+        if (is_array($messages)) {
+            if (count($messages) != 0) {
+                $message = array_values($messages)[0];
+            }
+        } else {
+            $message = $messages;
+        }
+        return $message;
+    }
+
+    /**
+     * @param $model
+     * @param $property
+     * @param mixed|string $default
+     * @return mixed|string
+     */
+    public static function getPropertyValue($model, $property, $default = ''): mixed
+    {
+        if (!is_object($model) || !property_exists($model, $property)) {
+            return $default;
+        }
+        return $model->{$property};
+    }
+
+    /**
+     * @param Model $model
+     * @return void
+     * @throws ErrorException
+     */
+    public static function throwError(Model $model): void
+    {
+        $message = self::getMessage($model);
+        if ($message != '') {
+            throw new ErrorException($message);
+        }
+    }
+
+    public static function throwNull($var, $message = null): void
+    {
+        if ($message == null) {
+            $message = '数据不存在';
+        }
+        if ($var == null) {
+            throw new ErrorException($message);
+        }
     }
 
     /**
