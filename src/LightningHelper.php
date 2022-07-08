@@ -13,6 +13,7 @@ use yii\base\InvalidConfigException;
 use yii\base\Model;
 use yii\base\Security;
 use yii\caching\CacheInterface;
+use yii\db\BaseActiveRecord;
 use yii\queue\Queue;
 use yii\redis\Connection;
 use yii\redis\SocketException;
@@ -95,6 +96,23 @@ class LightningHelper
             return $default;
         }
         return $model->{$property};
+    }
+
+    /**
+     * @param $model BaseActiveRecord
+     * @param string $field
+     * @param $default
+     * @return mixed|string
+     */
+    public static function getActiveRecordValue($model, string $field, string $default = '')
+    {
+        if ($model == null) {
+            return $default;
+        }
+        if (!($model instanceof BaseActiveRecord)) {
+            return $default;
+        }
+        return $model->getAttribute($field) ?? $default;
     }
 
     /**
