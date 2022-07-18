@@ -219,7 +219,7 @@ class LightningHelper
      * @return mixed
      * @throws Throwable
      */
-    public static function withDbCache(callable $callable, string $collection, int $duration): mixed
+    public static function withDbCache(callable $callable, string $collection, int $duration = 86400): mixed
     {
         return self::getApplication()->getDb()->cache($callable, $duration, new TagDependency(['tags' => $collection]));
     }
