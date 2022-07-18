@@ -13,6 +13,7 @@ use yii\base\InvalidConfigException;
 use yii\base\Model;
 use yii\base\Security;
 use yii\caching\CacheInterface;
+use yii\caching\TagDependency;
 use yii\db\BaseActiveRecord;
 use yii\queue\Queue;
 use yii\redis\Connection;
@@ -160,23 +161,34 @@ class LightningHelper
     }
 
     /**
-     * @param callable $f
-     * @param string $key
+     * @param callable $callable
+     * @param string $collection the key you want to storage
      * @param int $duration
      * @return false|mixed
      */
-    public static function withCache(callable $f, string $key, int $duration = 86400): mixed
+    public static function withCache(callable $callable, string $collection, int $duration = 86400): mixed
     {
         $cache  = LightningHelper::getCache();
-        $result = $cache->get($key);
+        $result = $cache->get($collection);
         if ($result !== false) {
             return $result;
         }
-        $result = call_user_func($f);
+        $result = call_user_func($callable);
         if ($result !== false) {
-            $cache->set($key, $result, $duration);
+            $cache->set($collection, $result, $duration);
         }
         return $result;
+    }
+
+    /**
+     * @param string $key
+     * @return void
+     * @see withCache
+     */
+    public static function invalidateCache(string $key): void
+    {
+        $cache = LightningHelper::getCache();
+        $cache->delete($key);
     }
 
     /**
@@ -202,14 +214,23 @@ class LightningHelper
     /**
      * quick call: Yii::$app->db->cache()
      * @param callable $callable
-     * @param null $duration
-     * @param null $dependency
+     * @param string $collection the key you want to storage
+     * @param int $duration
      * @return mixed
      * @throws Throwable
      */
-    public static function withDbCache(callable $callable, $duration = null, $dependency = null)
+    public static function withDbCache(callable $callable, string $collection, int $duration): mixed
     {
-        return self::getApplication()->getDb()->cache($callable, $duration, $dependency);
+        return self::getApplication()->getDb()->cache($callable, $duration, new TagDependency(['tags' => $collection]));
+    }
+
+    /**
+     * @param string $collection the key you want to clean
+     * @return void
+     */
+    public static function invalidateDbCache(string $collection): void
+    {
+        TagDependency::invalidate(static::getCache(), $collection);
     }
 
     /**
