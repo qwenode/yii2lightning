@@ -80,4 +80,24 @@ class QueryConditionBuilder
     {
         return ['<=', $field, $value];
     }
+
+    /**
+     * @param string $field
+     * @param $list
+     * @return array
+     */
+    public static function in(string $field, $list): array
+    {
+        return ['in', $field, $list];
+    }
+
+    /**
+     * @param string $field
+     * @param $list
+     * @return array
+     */
+    public static function notIn(string $field, $list): array
+    {
+        return ['not in', $field, $list];
+    }
 }
