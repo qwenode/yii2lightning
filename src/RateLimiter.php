@@ -30,12 +30,15 @@ class RateLimiter
     protected int $_lifetime;
     protected bool $_isRedis = false;
 
-    public function __construct(string $collection, int $limit, int $lifetime)
+    public function __construct(string $collection, int $limit, int $minutes)
     {
+        if ($minutes < 1) {
+            $minutes = 1;
+        }
         $this->_collection       = strtoupper(sprintf('LIGHTING_RATE_LIMITER:%s', $collection));
         $this->_uniqueIdentifier = $this->_collection;
         $this->_limit            = $limit;
-        $this->_lifetime         = $lifetime;
+        $this->_lifetime         = $minutes * 60;
 
         if (LightningHelper::getApplication()->has('redis')) {
             $this->_cache   = LightningHelper::getRedis();
@@ -45,17 +48,20 @@ class RateLimiter
         }
     }
 
-    public static function withCollection(string $collection, int $limit = 5, int $lifetime = 300): static
+    public static function withCollection(string $collection, int $limit = 5, int $minutes = 5): static
     {
-        return new static($collection, $limit, $lifetime);
+        return new static($collection, $limit, $minutes);
     }
 
-    public function factor(string $uniqueIdentifier, int $limit, int $lifetime = 300): RateLimiter
+    public function factor(string $uniqueIdentifier, int $limit, int $minutes = 5): RateLimiter
     {
+        if ($minutes < 1) {
+            $minutes = 1;
+        }
         $rateLimiter                    = clone $this;
         $rateLimiter->_uniqueIdentifier = strtoupper(sprintf('%s:%s', $this->_collection, $uniqueIdentifier));
         $rateLimiter->_limit            = $limit;
-        $rateLimiter->_lifetime         = $lifetime;
+        $rateLimiter->_lifetime         = $minutes * 60;
         return $rateLimiter;
     }
 
