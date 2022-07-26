@@ -41,17 +41,21 @@ const MODEL_RULE_STRING_MIN              = 'min';
 const MODEL_RULE_STRING_MAX              = 'max';
 const MODEL_RULE_DEFAULT                 = 'default';
 const MODEL_RULE_INTEGER                 = 'integer';
-const MODEL_RULE_DEFAULT_VALUE = 'value';
-const MODEL_RULE_UNIQUE = 'unique';
+const MODEL_RULE_DEFAULT_VALUE           = 'value';
+const MODEL_RULE_UNIQUE                  = 'unique';
 const MODEL_RULE_UNIQUE_TARGET_ATTRIBUTE = 'targetAttribute';
-const MODEL_RULE_EMAIL = 'email';
-const MODEL_RULE_WHEN = 'when';
-const MODEL_RULE_FILTER = 'filter';
-const MODEL_RULE_INTEGER_MIN = 'min';
-const MODEL_RULE_INTEGER_MAX = 'max';
-const MODEL_QUERY_BETWEEN = 'between';
+const MODEL_RULE_EMAIL                   = 'email';
+const MODEL_RULE_WHEN                    = 'when';
+const MODEL_RULE_FILTER                  = 'filter';
+const MODEL_RULE_INTEGER_MIN             = 'min';
+const MODEL_RULE_INTEGER_MAX             = 'max';
+const MODEL_QUERY_BETWEEN                = 'between';
 
 //常用时间数字
+const TIME_SECONDS_LABEL = 'seconds';
+const TIME_MINUTES_LABEL = 'minutes';
+const TIME_HOURS_LABEL   = 'hours';
+
 const TIME_NUMBER_1     = 1;
 const TIME_NUMBER_3     = 3;
 const TIME_NUMBER_5     = 5;
