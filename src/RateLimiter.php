@@ -53,13 +53,20 @@ class RateLimiter
         return new static($collection, $limit, $minutes);
     }
 
+    /**
+     *
+     * @param string $uniqueIdentifier 根据唯一ID进行限制
+     * @param int $limit 此参数也会加入ID计算规则,同样的 $uniqueIdentifier 不同的 $limit 则 限制计数不会冲突
+     * @param int $minutes
+     * @return RateLimiter
+     */
     public function factor(string $uniqueIdentifier, int $limit, int $minutes = 5): RateLimiter
     {
         if ($minutes < 1) {
             $minutes = 1;
         }
         $rateLimiter                    = clone $this;
-        $rateLimiter->_uniqueIdentifier = strtoupper(sprintf('%s:%s', $this->_collection, sha1($uniqueIdentifier)));
+        $rateLimiter->_uniqueIdentifier = strtoupper(sprintf('%s:%s', $this->_collection, sha1($uniqueIdentifier . $limit)));
         $rateLimiter->_limit            = $limit;
         $rateLimiter->_lifetime         = $minutes * 60;
         return $rateLimiter;
