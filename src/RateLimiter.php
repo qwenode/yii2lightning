@@ -35,7 +35,7 @@ class RateLimiter
         if ($minutes < 1) {
             $minutes = 1;
         }
-        $this->_collection       = strtoupper(sprintf('LIGHTING_RATE_LIMITER:%s', $collection));
+        $this->_collection       = strtoupper(sprintf('LIGHTING_RATE_LIMITER:%s', sha1($collection)));
         $this->_uniqueIdentifier = $this->_collection;
         $this->_limit            = $limit;
         $this->_lifetime         = $minutes * 60;
@@ -59,7 +59,7 @@ class RateLimiter
             $minutes = 1;
         }
         $rateLimiter                    = clone $this;
-        $rateLimiter->_uniqueIdentifier = strtoupper(sprintf('%s:%s', $this->_collection, $uniqueIdentifier));
+        $rateLimiter->_uniqueIdentifier = strtoupper(sprintf('%s:%s', $this->_collection, sha1($uniqueIdentifier)));
         $rateLimiter->_limit            = $limit;
         $rateLimiter->_lifetime         = $minutes * 60;
         return $rateLimiter;
