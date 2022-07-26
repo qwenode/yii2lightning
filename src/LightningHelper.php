@@ -19,6 +19,7 @@ use yii\queue\Queue;
 use yii\redis\Connection;
 use yii\redis\SocketException;
 use yii\web\Application;
+use yii\web\Controller;
 use yii\web\IdentityInterface;
 use yii\web\Request;
 use yii\web\Response;
@@ -114,6 +115,23 @@ class LightningHelper
             return $default;
         }
         return $model->getAttribute($field) ?? $default;
+    }
+
+    public static function getViewI18n(Controller $controller, $view = '')
+    {
+        $defaultView = $view;
+        if ($defaultView == '') {
+            $defaultView = $controller->action->id;
+        }
+        $app = LightningHelper::getApplication();
+        if ($app->language != $app->sourceLanguage) {
+            $newView = sprintf('%s-%s', $defaultView, $app->language);
+            $path    = $controller->view->theme->getPath(sprintf('%s/%s.php', $controller->id, $newView));
+            if (file_exists($path)) {
+                $defaultView = $newView;
+            }
+        }
+        return $defaultView;
     }
 
     /**
