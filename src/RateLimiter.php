@@ -13,7 +13,6 @@ use yii\redis\Connection;
  */
 class RateLimitExceededException extends ErrorException
 {
-    protected $message = 'Rate limit exceeded';
 }
 
 /**
@@ -100,10 +99,10 @@ class RateLimiter
      * @return void
      * @throws RateLimitExceededException
      */
-    public function verifyOrThrow(): void
+    public function verifyOrThrow(string $message = 'Rate limit exceeded'): void
     {
         if (!$this->verify()) {
-            throw new RateLimitExceededException();
+            throw new RateLimitExceededException($message);
         }
     }
 }
