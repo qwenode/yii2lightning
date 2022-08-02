@@ -4,6 +4,16 @@ namespace qwenode\yii2lightning;
 
 class QueryConditionBuilder
 {
+    public static function sortAsc(string $field): array
+    {
+        return [$field => SORT_ASC];
+    }
+
+    public static function sortDesc(string $field): array
+    {
+        return [$field => SORT_DESC];
+    }
+
     /**
      * $field <> $value
      * @param string $field
