@@ -152,7 +152,7 @@ class LightningHelper
         if ($message == null) {
             $message = '数据不存在';
         }
-        if ($var == null) {
+        if (empty($var)) {
             throw new ErrorException($message);
         }
     }
