@@ -41,7 +41,7 @@ class LightningHelper
     {
         return Yii::$app->response->refresh($anchor);
     }
-
+    
     /**
      * @param string $message
      * @param ...$params
@@ -63,7 +63,7 @@ class LightningHelper
         }
         return $newMsg;
     }
-
+    
     /**
      * get one model error message
      * @param Model $model
@@ -85,7 +85,7 @@ class LightningHelper
         }
         return $message;
     }
-
+    
     /**
      * @param $model
      * @param $property
@@ -99,7 +99,7 @@ class LightningHelper
         }
         return $model->{$property};
     }
-
+    
     /**
      * @param $model BaseActiveRecord
      * @param string $field
@@ -116,7 +116,7 @@ class LightningHelper
         }
         return $model->getAttribute($field) ?? $default;
     }
-
+    
     public static function getViewI18n(Controller $controller, $view = '')
     {
         $defaultView = $view;
@@ -133,30 +133,30 @@ class LightningHelper
         }
         return $defaultView;
     }
-
+    
     /**
      * @param Model $model
      * @return void
      * @throws ErrorException
      */
-    public static function throwError(Model $model): void
+    public static function throwError(Model $model, int $code = 0): void
     {
         $message = self::getMessage($model);
         if ($message != '') {
-            throw new ErrorException($message);
+            throw new ErrorException($message, $code);
         }
     }
-
-    public static function throwNull($var, $message = null): void
+    
+    public static function throwNull($var, string $message = null, int $code = 0): void
     {
         if ($message == null) {
             $message = '数据不存在';
         }
         if (empty($var)) {
-            throw new ErrorException($message);
+            throw new ErrorException($message, $code);
         }
     }
-
+    
     /**
      * @return string|null
      */
@@ -168,7 +168,7 @@ class LightningHelper
         }
         return $referrer;
     }
-
+    
     /**
      * @return Queue
      * @throws InvalidConfigException
@@ -177,7 +177,7 @@ class LightningHelper
     {
         return LightningHelper::getApplication()->get('queue');
     }
-
+    
     /**
      * @param callable $callable
      * @param string $collection the key you want to storage
@@ -197,7 +197,7 @@ class LightningHelper
         }
         return $result;
     }
-
+    
     /**
      * @param string $key
      * @return void
@@ -208,7 +208,7 @@ class LightningHelper
         $cache = LightningHelper::getCache();
         $cache->delete($key);
     }
-
+    
     /**
      * 跳转到上一页
      * @param null $errorMessage 错误消息
@@ -219,7 +219,7 @@ class LightningHelper
         FlashHelper::error($errorMessage);
         return self::getResponse()->redirect(self::getReturnUrl());
     }
-
+    
     /**
      * get default database connection
      * @return \yii\db\Connection
@@ -228,7 +228,7 @@ class LightningHelper
     {
         return self::getApplication()->getDb();
     }
-
+    
     /**
      * quick call: Yii::$app->db->cache()
      * @param callable $callable
@@ -241,7 +241,7 @@ class LightningHelper
     {
         return self::getApplication()->getDb()->cache($callable, $duration, new TagDependency(['tags' => $collection]));
     }
-
+    
     /**
      * @param string $collection the key you want to clean
      * @return void
@@ -250,7 +250,7 @@ class LightningHelper
     {
         TagDependency::invalidate(static::getCache(), $collection);
     }
-
+    
     /**
      * get default cache connection
      * @return CacheInterface
@@ -259,7 +259,7 @@ class LightningHelper
     {
         return self::getApplication()->getCache();
     }
-
+    
     /**
      * @return \yii\console\Application|Application
      */
@@ -267,8 +267,8 @@ class LightningHelper
     {
         return Yii::$app;
     }
-
-
+    
+    
     /**
      * @return User
      */
@@ -276,7 +276,7 @@ class LightningHelper
     {
         return Yii::$app->getUser();
     }
-
+    
     /**
      * @return int|string|null
      */
@@ -284,7 +284,7 @@ class LightningHelper
     {
         return static::getUser()->getId();
     }
-
+    
     /**
      * @param bool $autoRenew
      * @return bool|IdentityInterface|null
@@ -294,7 +294,7 @@ class LightningHelper
     {
         return static::getUser()->getIdentity($autoRenew);
     }
-
+    
     /**
      * @return \yii\console\Request|Request
      */
@@ -302,7 +302,7 @@ class LightningHelper
     {
         return Yii::$app->getRequest();
     }
-
+    
     /**
      * @return \yii\console\Response|Response
      */
@@ -310,7 +310,7 @@ class LightningHelper
     {
         return Yii::$app->getResponse();
     }
-
+    
     /**
      * @return Security
      */
@@ -318,7 +318,7 @@ class LightningHelper
     {
         return Yii::$app->getSecurity();
     }
-
+    
     /**
      * @return Session
      */
@@ -326,7 +326,7 @@ class LightningHelper
     {
         return Yii::$app->getSession();
     }
-
+    
     /**
      * @return Redis|Connection
      */
@@ -334,7 +334,7 @@ class LightningHelper
     {
         return Yii::$app->get('redis');
     }
-
+    
     /**
      * 此方法会检查链接可用性并自动重连
      * @return \yii\db\Connection
@@ -352,7 +352,7 @@ class LightningHelper
         }
         throw new Exception('database reconnect fail.');
     }
-
+    
     /**
      * 此方法会检查链接可用性并自动重连
      * @return Redis|Connection
@@ -376,17 +376,17 @@ class LightningHelper
         }
         throw new SocketException('redis reconnect fail.');
     }
-
+    
     public static function asDate($value, $format = NULL)
     {
         return Yii::$app->getFormatter()->asDate($value, $format);
     }
-
+    
     public static function asDatetime($value, $format = NULL)
     {
         return Yii::$app->getFormatter()->asDatetime($value, $format);
     }
-
+    
     public static function asTime($value, $format = NULL)
     {
         return Yii::$app->getFormatter()->asTime($value, $format);
