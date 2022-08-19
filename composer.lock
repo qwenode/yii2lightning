@@ -4,7 +4,7 @@
     "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
     "This file is @generated automatically"
   ],
-  "content-hash": "e7969620d04036608c7d20e4a9505691",
+  "content-hash": "c11f52326f6249ba6a5a93ebfdca067d",
   "packages": [
     {
       "name": "cebe/markdown",
@@ -173,16 +173,16 @@
     },
     {
       "name": "qwenode/qwephp",
-      "version": "2.1.1",
+      "version": "2.3.2",
       "source": {
         "type": "git",
         "url": "https://github.com/qwenode/qwephp.git",
-        "reference": "4e828a392442d2f64c29a0adf0174f4d50837ecc"
+        "reference": "ad2db06ba7ed4b8251c216710a68b1cc7ab3f4b5"
       },
       "dist": {
         "type": "zip",
-        "url": "https://api.github.com/repos/qwenode/qwephp/zipball/4e828a392442d2f64c29a0adf0174f4d50837ecc",
-        "reference": "4e828a392442d2f64c29a0adf0174f4d50837ecc",
+        "url": "https://api.github.com/repos/qwenode/qwephp/zipball/ad2db06ba7ed4b8251c216710a68b1cc7ab3f4b5",
+        "reference": "ad2db06ba7ed4b8251c216710a68b1cc7ab3f4b5",
         "shasum": ""
       },
       "require": {
@@ -215,9 +215,9 @@
       "description": "an php utility library",
       "support": {
         "issues": "https://github.com/qwenode/qwephp/issues",
-        "source": "https://github.com/qwenode/qwephp/tree/2.1.1"
+        "source": "https://github.com/qwenode/qwephp/tree/2.3.2"
       },
-      "time": "2022-07-18T07:06:45+00:00"
+      "time": "2022-08-19T03:08:03+00:00"
     },
     {
       "name": "symfony/polyfill-php80",
