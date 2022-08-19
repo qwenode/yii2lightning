@@ -152,7 +152,7 @@ class LightningHelper
     /**
      * @throws ErrorException
      */
-    public static function throwNull($var, string $message = null, int $code = 0): void
+    public static function throwNull($var, int $code = 0, string $message = null,): void
     {
         if ($message == null) {
             $message = '数据不存在';
