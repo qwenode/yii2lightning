@@ -15,6 +15,7 @@ use yii\base\Model;
 use yii\base\Security;
 use yii\caching\CacheInterface;
 use yii\caching\TagDependency;
+use yii\db\ActiveRecord;
 use yii\db\BaseActiveRecord;
 use yii\queue\Queue;
 use yii\redis\Connection;
@@ -95,6 +96,11 @@ class LightningHelper
      */
     public static function getPropertyValue($model, $property, $default = ''): mixed
     {
+        if ($model instanceof ActiveRecord) {
+            if ($model->hasAttribute($property)) {
+                return $model->getAttribute($property);
+            }
+        }
         if (!is_object($model) || !property_exists($model, $property)) {
             return $default;
         }
