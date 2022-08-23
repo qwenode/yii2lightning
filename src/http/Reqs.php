@@ -127,8 +127,8 @@ class Reqs
     public static function postString(string $name, bool $strip = true)
     {
         $val = self::post($name);
-        if ($val === null) {
-            $val = '';
+        if ($val == null) {
+            return '';
         }
         if (true === $strip) {
             $val = trim(strip_tags($val));
@@ -145,8 +145,8 @@ class Reqs
     public static function getString(string $name, bool $strip = true)
     {
         $val = self::get($name);
-        if ($val === null) {
-            $val = '';
+        if ($val == null) {
+            return $val;
         }
         if (true === $strip) {
             $val = trim(strip_tags($val));
