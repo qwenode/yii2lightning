@@ -26,7 +26,7 @@ const VIEW_PLACEHOLDER     = 'placeholder';
 const VIEW_ENCTYPE                    = 'enctype';
 const VIEW_ENCTYPE_MULTIPART_FORMDATA = 'multipart/form-data';
 const VIEW_FORM_UPLOAD_OPTIONS        = [
-    VIEW_ENCTYPE => VIEW_ENCTYPE_MULTIPART_FORMDATA
+    VIEW_ENCTYPE => VIEW_ENCTYPE_MULTIPART_FORMDATA,
 ];//ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data']])
 
 //model 部分
@@ -41,6 +41,9 @@ const MODEL_RULE_STRING_MIN              = 'min';
 const MODEL_RULE_STRING_MAX              = 'max';
 const MODEL_RULE_DEFAULT                 = 'default';
 const MODEL_RULE_INTEGER                 = 'integer';
+const MODEL_RULE_NUMBER                  = 'number';
+const MODEL_RULE_NUMBER_MIN              = 'min';
+const MODEL_RULE_NUMBER_MAX              = 'max';
 const MODEL_RULE_DEFAULT_VALUE           = 'value';
 const MODEL_RULE_UNIQUE                  = 'unique';
 const MODEL_RULE_UNIQUE_TARGET_ATTRIBUTE = 'targetAttribute';
@@ -50,6 +53,7 @@ const MODEL_RULE_FILTER                  = 'filter';
 const MODEL_RULE_INTEGER_MIN             = 'min';
 const MODEL_RULE_INTEGER_MAX             = 'max';
 const MODEL_QUERY_BETWEEN                = 'between';
+const MODEL_RULE_TRIM                    = 'trim';
 
 //常用时间数字
 const TIME_SECONDS_LABEL = 'seconds';
