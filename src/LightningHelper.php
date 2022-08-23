@@ -199,7 +199,7 @@ class LightningHelper
     {
         $cache  = LightningHelper::getCache();
         $result = $cache->get($collection);
-        if ($result !== false) {
+        if ($result !== false && $duration > 0) {
             return $result;
         }
         $result = call_user_func($callable);
