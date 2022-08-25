@@ -23,7 +23,7 @@ class Reqs
     {
         return LightningHelper::getRequest();
     }
-
+    
     /**
      * @return bool
      */
@@ -31,7 +31,7 @@ class Reqs
     {
         return LightningHelper::getRequest()->getIsPost();
     }
-
+    
     /**
      * @throws ErrorException
      */
@@ -41,7 +41,7 @@ class Reqs
             throw new ErrorException('request method not allowed');
         }
     }
-
+    
     /**
      * @throws ErrorException
      */
@@ -51,7 +51,7 @@ class Reqs
             throw new ErrorException('request method not allowed');
         }
     }
-
+    
     /**
      * @return bool
      */
@@ -59,7 +59,7 @@ class Reqs
     {
         return LightningHelper::getRequest()->getIsGet();
     }
-
+    
     /**
      * @return bool
      */
@@ -67,7 +67,7 @@ class Reqs
     {
         return LightningHelper::getRequest()->getIsAjax();
     }
-
+    
     /**
      * check the name whether is exists in $_GET array
      * @param string $name
@@ -77,7 +77,7 @@ class Reqs
     {
         return isset($_GET[$name]);
     }
-
+    
     /**
      * check the name whether is exists in $_POST array
      * @param string $name
@@ -87,7 +87,7 @@ class Reqs
     {
         return isset($_POST[$name]);
     }
-
+    
     /**
      * check the name whether is exists in $_FILES array
      * @param string $name
@@ -97,7 +97,7 @@ class Reqs
     {
         return isset($_FILES[$name]);
     }
-
+    
     /**
      * @param null $name
      * @param null $default
@@ -107,7 +107,7 @@ class Reqs
     {
         return LightningHelper::getRequest()->post($name, $defaultValue);
     }
-
+    
     /**
      * @param null $name
      * @param null $defaultValue
@@ -117,7 +117,7 @@ class Reqs
     {
         return LightningHelper::getRequest()->get($name, $defaultValue);
     }
-
+    
     /**
      * get trim(strip_tags($_POST[$name]));
      * @param string $name
@@ -135,7 +135,17 @@ class Reqs
         }
         return $val;
     }
-
+    
+    public static function getBoolean($val): bool
+    {
+        return static::getInteger($val) > 0;
+    }
+    
+    public static function postBoolean($val): bool
+    {
+        return static::postInteger($val) > 0;
+    }
+    
     /**
      * get trim(strip_tags($_GET[$name]));
      * @param string $name
@@ -153,7 +163,7 @@ class Reqs
         }
         return $val;
     }
-
+    
     /**
      * get (int)$_POST[$name]
      * @param string $name
@@ -173,7 +183,7 @@ class Reqs
         }
         return $val;
     }
-
+    
     /**
      * get (int)$_GET[$name]
      * @param string $name
@@ -193,7 +203,7 @@ class Reqs
         }
         return $val;
     }
-
+    
     /**
      * get (int)$_GET['id']  limit between 0 and 2147483647
      * @return int
@@ -202,7 +212,7 @@ class Reqs
     {
         return self::getInteger('id');
     }
-
+    
     /**
      * get page limit between 1 and 2147483647
      * @param string $name
@@ -216,7 +226,7 @@ class Reqs
         }
         return $val;
     }
-
+    
     /**
      * get (int)$_POST['id'] limit between 0 and 2147483647
      * @return int
