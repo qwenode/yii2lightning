@@ -13,7 +13,12 @@ class Resp
     {
         return LightningHelper::getResponse();
     }
-
+    
+    public static function setResponseFormatAsJson()
+    {
+        self::response()->format = \yii\web\Response::FORMAT_JSON;
+    }
+    
     /**
      * @param array|mixed $data
      * @param string $msg
@@ -27,7 +32,7 @@ class Resp
             'data' => $data,
         ];
     }
-
+    
     public static function success($msg = 'ok', $code = 1)
     {
         return [
@@ -35,7 +40,7 @@ class Resp
             'msg'  => $msg,
         ];
     }
-
+    
     public static function error($msg, $code = 0)
     {
         return [
@@ -43,5 +48,5 @@ class Resp
             'msg'  => $msg,
         ];
     }
-
+    
 }
