@@ -7,6 +7,7 @@ namespace qwenode\yii2lightning\http;
 use ErrorException;
 use qwenode\yii2lightning\LightningHelper;
 use qwephp\Number;
+use qwephp\StrHelper;
 use yii\web\Request;
 
 /**
@@ -138,12 +139,20 @@ class Reqs
     
     public static function getBoolean($val): bool
     {
-        return static::getInteger($val) > 0;
+        $v = Reqs::get($val);
+        if (StrHelper::containArray($v, ['yes', 'ok', '1', 'true', 'sure', 'agree'])) {
+            return true;
+        }
+        return intval($v) > 0;
     }
     
     public static function postBoolean($val): bool
     {
-        return static::postInteger($val) > 0;
+        $v = Reqs::post($val);
+        if (StrHelper::containArray($v, ['yes', 'ok', '1', 'true', 'sure', 'agree'])) {
+            return true;
+        }
+        return intval($v) > 0;
     }
     
     /**
