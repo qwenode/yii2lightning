@@ -51,6 +51,13 @@ class RuleBuilder
         return [[$field], 'compare', 'compareAttribute' => $target];
     }
     
+    /**
+     * @param $field
+     * @param $extensions
+     * @param bool $skipOnEmpty
+     * @param bool $checkExtensionByMimeType 注意如果是csv,要设置为false, 因为https://stackoverflow.com/questions/40797023/yii2-setting-rules-for-csv-file-upload-and-retaining-original-filename
+     * @return array
+     */
     public static function file($field, $extensions = ['png', 'jpg'], bool $skipOnEmpty = false, bool $checkExtensionByMimeType = true)
     {
         return [[$field], 'file', 'skipOnEmpty' => $skipOnEmpty, 'extensions' => $extensions, 'checkExtensionByMimeType' => $checkExtensionByMimeType];
