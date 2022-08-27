@@ -50,4 +50,9 @@ class RuleBuilder
     {
         return [[$field], 'compare', 'compareAttribute' => $target];
     }
+    
+    public static function file($field, $extensions = ['png', 'jpg'], bool $skipOnEmpty = false)
+    {
+        return [[$field], 'file', 'skipOnEmpty' => $skipOnEmpty, 'extensions' => $extensions];
+    }
 }
