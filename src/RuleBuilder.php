@@ -62,4 +62,9 @@ class RuleBuilder
     {
         return [[$field], 'file', 'skipOnEmpty' => $skipOnEmpty, 'extensions' => $extensions, 'checkExtensionByMimeType' => $checkExtensionByMimeType];
     }
+    
+    public static function unique(...$fields)
+    {
+        return [$fields, 'unique'];
+    }
 }
