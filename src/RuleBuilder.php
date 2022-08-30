@@ -1,6 +1,7 @@
 <?php
 
 namespace qwenode\yii2lightning;
+
 /**
  * 校验规则
  */
@@ -41,6 +42,11 @@ class RuleBuilder
         return [$fields, MODEL_RULE_NUMBER];
     }
     
+    public static function default($defaultValue, ...$fields)
+    {
+        return [$fields, 'default', 'value' => $defaultValue];
+    }
+    
     public static function numberRange(int $min, int $max, string ...$fields): array
     {
         return [$fields, MODEL_RULE_NUMBER, MODEL_RULE_NUMBER_MIN => $min, MODEL_RULE_NUMBER_MAX => $max];
@@ -66,5 +72,34 @@ class RuleBuilder
     public static function unique(...$fields)
     {
         return [$fields, 'unique'];
+    }
+    
+    public static function when($rule, ?callable $when, string $whenClient = '')
+    {
+        if (!is_array($rule)) {
+            return $rule;
+        }
+        if (is_callable($when)) {
+            $rule['when'] = $when;
+        }
+        if ($whenClient != '') {
+            $rule['whenClient'] = $whenClient;
+        }
+        return $rule;
+    }
+    
+    /**
+     * 为规则附加错误消息
+     * @param $rule
+     * @param string $msg
+     * @return mixed
+     */
+    public static function withMessage($rule, string $msg)
+    {
+        if (!is_array($rule)) {
+            return $rule;
+        }
+        $rule['message'] = $msg;
+        return $rule;
     }
 }
