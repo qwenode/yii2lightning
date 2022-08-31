@@ -7,6 +7,22 @@ namespace qwenode\yii2lightning;
  */
 class RuleBuilder
 {
+    
+    public static function dontValidate(...$fields): array
+    {
+        return [$fields, 'safe'];
+    }
+    
+    public static function ip(...$fields)
+    {
+        return [$fields, 'ip'];
+    }
+    
+    public static function safe(...$fields): array
+    {
+        return self::dontValidate(...$fields);
+    }
+    
     public static function required(string ...$fields): array
     {
         return [$fields, MODEL_RULE_REQUIRED];
