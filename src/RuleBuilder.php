@@ -2,6 +2,8 @@
 
 namespace qwenode\yii2lightning;
 
+use Yii;
+
 /**
  * 校验规则
  */
@@ -36,6 +38,11 @@ class RuleBuilder
     public static function string(string ...$fields): array
     {
         return [$fields, MODEL_RULE_STRING];
+    }
+    
+    public static function date($field, $format = 'php:Y-m-d', ...$options)
+    {
+        return [[$field], 'date', 'timestampAttribute' => $field, 'defaultTimeZone' => Yii::$app->timeZone, 'format' => $format, ...$options];
     }
     
     public static function stringLength(int $min, int $max, string ...$fields): array
