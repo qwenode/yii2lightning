@@ -40,9 +40,9 @@ class RuleBuilder
         return [$fields, MODEL_RULE_STRING];
     }
     
-    public static function date($field, $format = 'php:Y-m-d', ...$options)
+    public static function date($field, $format = 'php:Y-m-d')
     {
-        return [[$field], 'date', 'timestampAttribute' => $field, 'defaultTimeZone' => Yii::$app->timeZone, 'format' => $format, ...$options];
+        return [[$field], 'date', 'timestampAttribute' => $field, 'defaultTimeZone' => Yii::$app->timeZone, 'format' => $format, 'min' => 10000000];
     }
     
     public static function stringLength(int $min, int $max, string ...$fields): array
