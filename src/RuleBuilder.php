@@ -94,9 +94,73 @@ class RuleBuilder
         return [[$field], 'file', 'skipOnEmpty' => $skipOnEmpty, 'extensions' => $extensions, 'checkExtensionByMimeType' => $checkExtensionByMimeType];
     }
     
-    public static function unique(...$fields)
+    public static function unique(...$fields): array
     {
         return [$fields, 'unique'];
+    }
+    
+    public static function in(string $field, array $range, bool $strict = false): array
+    {
+        return [[$field], 'in', 'range' => $range, 'strict' => $strict];
+    }
+    
+    /**
+     * 必须中文
+     * @param ...$fields
+     * @return array
+     */
+    public static function chinese(string $field, ?string $message = null): array
+    {
+        return self::pattern($field, '/([\x{4e00}-\x{9fa5}]+)/u', $message);
+    }
+    
+    /**
+     * 中国身份证判断
+     * @param string $field
+     * @param string|null $message
+     * @return array
+     */
+    public static function chineseIDCard(string $field, ?string $message = null): array
+    {
+        return self::pattern($field,
+            '/(^[1-9]\d{5}(18|19|([23]\d))\d{2}((0[1-9])|(10|11|12))(([0-2][1-9])|10|20|30|31)\d{3}[0-9Xx]$)|(^[1-9]\d{5}\d{2}((0[1-9])|(10|11|12))(([0-2][1-9])|10|20|30|31)\d{3}$)/',
+            $message);
+    }
+    
+    /**
+     * 中国手机号
+     * @param $field
+     * @param string|null $message
+     * @return array
+     */
+    public static function chinesePhone($field, ?string $message = null): array
+    {
+        return self::pattern($field, '/^1[3-9]\d{9}$/', $message);
+    }
+    
+    /**
+     * 紧允许大小写字母和数字
+     * @param $field
+     * @param string|null $message
+     * @return array
+     */
+    public static function alphabetAndNumber($field, ?string $message = null): array
+    {
+        return self::pattern($field, '/^[a-z0-9A-Z]+$/', $message);
+    }
+    
+    public static function pattern(string $field, string $pattern, ?string $message = null)
+    {
+        $r = [[$field], 'match', 'pattern' => $pattern];
+        if (Assertion::notNull($message)) {
+            $r['message'] = $message;
+        }
+        return $r;
+    }
+    
+    public static function inKey(string $field, array $range, bool $strict = false): array
+    {
+        return self::in($field, array_keys($range), $strict);
     }
     
     public static function when($rule, ?callable $when, string $whenClient = '')
