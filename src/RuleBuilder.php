@@ -117,12 +117,37 @@ class RuleBuilder
      * @param string $msg
      * @return mixed
      */
-    public static function withMessage($rule, string $msg)
+    public static function withMessage($rule, string $msg): array
     {
         if (!is_array($rule)) {
             return $rule;
         }
         $rule['message'] = $msg;
         return $rule;
+    }
+    
+    public static function withAttribute($rule, array $params)
+    {
+        if (!is_array($rule)) {
+            return $rule;
+        }
+        return array_merge($rule, $params);
+    }
+    
+    public static function filter(callable $callable, ...$fields): array
+    {
+        return [$fields, 'filter', 'filter' => $callable];
+    }
+    
+    public static function filterToUnixTime(...$fields): array
+    {
+        
+        return self::filter(function ($value) {
+            $strtotime = strtotime($value);
+            if ($strtotime < 1000000) {
+                return 0;
+            }
+            return $strtotime;
+        }, ...$fields);
     }
 }
