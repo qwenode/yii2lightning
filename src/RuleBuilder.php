@@ -2,6 +2,8 @@
 
 namespace qwenode\yii2lightning;
 
+use qwenode\yii2lightning\validators\DomainValidator;
+use qwephp\assert\Assertion;
 use Yii;
 
 /**
@@ -27,17 +29,17 @@ class RuleBuilder
     
     public static function required(string ...$fields): array
     {
-        return [$fields, MODEL_RULE_REQUIRED];
+        return [$fields, 'required'];
     }
     
     public static function trim(string ...$fields): array
     {
-        return [$fields, MODEL_RULE_TRIM];
+        return [$fields, 'trim'];
     }
     
     public static function string(string ...$fields): array
     {
-        return [$fields, MODEL_RULE_STRING];
+        return [$fields, 'string'];
     }
     
     public static function date($field, $format = 'php:Y-m-d')
@@ -47,22 +49,22 @@ class RuleBuilder
     
     public static function stringLength(int $min, int $max, string ...$fields): array
     {
-        return [$fields, MODEL_RULE_STRING, MODEL_RULE_STRING_MIN => $min, MODEL_RULE_STRING_MAX => $max];
+        return [$fields, 'string', 'min' => $min, 'max' => $max];
     }
     
     public static function integer(string ...$fields): array
     {
-        return [$fields, MODEL_RULE_INTEGER];
+        return [$fields, 'integer'];
     }
     
     public static function integerRange(int $min, int $max, string ...$fields): array
     {
-        return [$fields, MODEL_RULE_INTEGER, MODEL_RULE_INTEGER_MIN => $min, MODEL_RULE_INTEGER_MAX => $max];
+        return [$fields, 'integer', 'min' => $min, 'max' => $max];
     }
     
     public static function number(string ...$fields): array
     {
-        return [$fields, MODEL_RULE_NUMBER];
+        return [$fields, 'number'];
     }
     
     public static function default($defaultValue, ...$fields)
@@ -72,7 +74,7 @@ class RuleBuilder
     
     public static function numberRange(int $min, int $max, string ...$fields): array
     {
-        return [$fields, MODEL_RULE_NUMBER, MODEL_RULE_NUMBER_MIN => $min, MODEL_RULE_NUMBER_MAX => $max];
+        return [$fields, 'number', 'min' => $min, 'max' => $max];
     }
     
     public static function compare($field, $target): array
@@ -132,6 +134,15 @@ class RuleBuilder
             return $rule;
         }
         return array_merge($rule, $params);
+    }
+    
+    public static function domain(string $field, ?string $message = null): array
+    {
+        $r = [[$field], DomainValidator::class];
+        if (Assertion::notNull($message)) {
+            $r = self::withMessage($r, $message);
+        }
+        return $r;
     }
     
     public static function filter(callable $callable, ...$fields): array
