@@ -173,16 +173,16 @@
     },
     {
       "name": "qwenode/qwephp",
-      "version": "2.5.1",
+      "version": "2.6.2",
       "source": {
         "type": "git",
         "url": "https://github.com/qwenode/qwephp.git",
-        "reference": "9bbfbcc53966cda6e2615160b3b2c2c92e208e3c"
+        "reference": "189f0f0eb276b2dc5609535194e757afcafb4d1a"
       },
       "dist": {
         "type": "zip",
-        "url": "https://api.github.com/repos/qwenode/qwephp/zipball/9bbfbcc53966cda6e2615160b3b2c2c92e208e3c",
-        "reference": "9bbfbcc53966cda6e2615160b3b2c2c92e208e3c",
+        "url": "https://api.github.com/repos/qwenode/qwephp/zipball/189f0f0eb276b2dc5609535194e757afcafb4d1a",
+        "reference": "189f0f0eb276b2dc5609535194e757afcafb4d1a",
         "shasum": ""
       },
       "require": {
@@ -215,9 +215,9 @@
       "description": "an php utility library",
       "support": {
         "issues": "https://github.com/qwenode/qwephp/issues",
-        "source": "https://github.com/qwenode/qwephp/tree/2.5.1"
+        "source": "https://github.com/qwenode/qwephp/tree/2.6.2"
       },
-      "time": "2022-08-23T06:51:56+00:00"
+      "time": "2022-09-02T09:08:31+00:00"
     },
     {
       "name": "symfony/polyfill-php80",

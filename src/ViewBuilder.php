@@ -16,11 +16,12 @@ class ViewBuilder
      * @return string
      * @throws InvalidConfigException
      */
-    public static function activeLink(string $url, string $appendClass = '', string $activeClass = 'active')
+    public static function activeLink(string $url, array $match = [], string $appendClass = '', string $activeClass = 'active')
     {
         $current = LightningHelper::getRequest()->getUrl();
         $tpl     = ' href="%s" class="%s" ';
-        if (StrHelper::contain($current, $url)) {
+        $match[] = $url;
+        if (StrHelper::containArray($current, $match)) {
             return sprintf($tpl, $url, $appendClass . ' ' . $activeClass);
         }
         return sprintf($tpl, $url, $appendClass);
