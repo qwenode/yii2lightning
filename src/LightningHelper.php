@@ -293,7 +293,12 @@ class LightningHelper
      */
     public static function getCurrentUserID()
     {
-        return static::getUser()->getId();
+        try {
+            return (int)static::getUser()->getId();
+        } catch (Exception $exception) {
+            return 0;
+        }
+    
     }
     
     /**
