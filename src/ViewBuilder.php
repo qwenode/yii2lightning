@@ -14,7 +14,7 @@ class ViewBuilder
      */
     public static $authorizeCallback = null;
     
-    public static function item(string $label, $url, $authCode = null)
+    public static function menuItem(string $label, $url, $authCode = null)
     {
         if (is_callable(self::$authorizeCallback) && $authCode !== null) {
             if (!call_user_func(self::$authorizeCallback, $authCode)) {
@@ -27,7 +27,7 @@ class ViewBuilder
         ];
     }
     
-    public static function items(string $label, ...$items)
+    public static function menuItems(string $label, ...$items)
     {
         $list = [
             'label' => $label,
