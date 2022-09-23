@@ -213,9 +213,20 @@ class RuleBuilder
         return $r;
     }
     
+    /**
+     * function($v){ return $v; }
+     * @param callable $callable
+     * @param ...$fields
+     * @return array
+     */
     public static function filter(callable $callable, ...$fields): array
     {
         return [$fields, 'filter', 'filter' => $callable];
+    }
+    
+    public static function stripTags(...$fields): array
+    {
+        return [$fields, 'filter', 'filter' => 'strip_tags'];
     }
     
     public static function filterToUnixTime(...$fields): array
