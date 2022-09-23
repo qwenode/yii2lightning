@@ -11,13 +11,17 @@ use Yii;
  */
 class RuleBuilder
 {
+    public static function boolean(...$fields): array
+    {
+        return [$fields, 'boolean'];
+    }
     
     public static function dontValidate(...$fields): array
     {
         return [$fields, 'safe'];
     }
     
-    public static function ip(...$fields)
+    public static function ip(...$fields): array
     {
         return [$fields, 'ip'];
     }
