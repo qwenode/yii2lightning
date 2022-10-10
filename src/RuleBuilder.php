@@ -76,7 +76,7 @@ class RuleBuilder
         return [$fields, 'default', 'value' => $defaultValue];
     }
     
-    public static function numberRange(int $min, int $max, string ...$fields): array
+    public static function numberRange(int|float $min, int|float $max, string ...$fields): array
     {
         return [$fields, 'number', 'min' => $min, 'max' => $max];
     }
