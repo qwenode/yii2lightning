@@ -21,6 +21,11 @@ class RuleBuilder
         return [$fields, 'safe'];
     }
     
+    public static function email(...$fields): array
+    {
+        return [$fields, 'email'];
+    }
+    
     public static function ip(...$fields): array
     {
         return [$fields, 'ip'];
