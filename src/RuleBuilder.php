@@ -229,6 +229,16 @@ class RuleBuilder
         return [$fields, 'filter', 'filter' => $callable];
     }
     
+    /**
+     * url validation
+     * @param ...$fields
+     * @return array
+     */
+    public static function url(...$fields)
+    {
+        return [$fields, 'url'];
+    }
+    
     public static function stripTags(...$fields): array
     {
         return [$fields, 'filter', 'filter' => 'strip_tags'];
