@@ -6,8 +6,8 @@ namespace qwenode\yii2lightning\http;
 
 use ErrorException;
 use qwenode\yii2lightning\LightningHelper;
-use qwephp\Number;
-use qwephp\StrHelper;
+use qwephp\NN;
+use qwephp\SS;
 use yii\web\Request;
 
 /**
@@ -140,19 +140,13 @@ class Reqs
     public static function getBoolean($val): bool
     {
         $v = Reqs::get($val);
-        if (StrHelper::containArray($v, ['yes', 'ok', '1', 'true', 'sure', 'agree'])) {
-            return true;
-        }
-        return intval($v) > 0;
+        return SS::toBoolean($v);
     }
     
     public static function postBoolean($val): bool
     {
         $v = Reqs::post($val);
-        if (StrHelper::containArray($v, ['yes', 'ok', '1', 'true', 'sure', 'agree'])) {
-            return true;
-        }
-        return intval($v) > 0;
+        return SS::toBoolean($v);
     }
     
     /**
@@ -179,15 +173,15 @@ class Reqs
      * @param bool $positive limit between 0 and 2147483647
      * @return int
      */
-    public static function postInteger(string $name, bool $positive = true): int
+    public static function postInteger(string $name, bool $positive = false): int
     {
         $val = (int)self::post($name);
         if (true === $positive) {
-            if ($val <= Number::ZERO) {
-                $val = Number::ZERO;
+            if ($val <= NN::ZERO) {
+                $val = NN::ZERO;
             }
-            if ($val >= Number::MAX_INT) {
-                $val = Number::MAX_INT;
+            if ($val >= NN::MAX_INT) {
+                $val = NN::MAX_INT;
             }
         }
         return $val;
@@ -199,15 +193,15 @@ class Reqs
      * @param bool $positive limit between 0 and 2147483647
      * @return int
      */
-    public static function getInteger(string $name, bool $positive = true): int
+    public static function getInteger(string $name, bool $positive = false): int
     {
         $val = (int)self::get($name);
         if (true === $positive) {
-            if ($val <= Number::ZERO) {
-                $val = Number::ZERO;
+            if ($val <= NN::ZERO) {
+                $val = NN::ZERO;
             }
-            if ($val >= Number::MAX_INT) {
-                $val = Number::MAX_INT;
+            if ($val >= NN::MAX_INT) {
+                $val = NN::MAX_INT;
             }
         }
         return $val;

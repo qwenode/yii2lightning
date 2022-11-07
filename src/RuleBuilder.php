@@ -3,7 +3,7 @@
 namespace qwenode\yii2lightning;
 
 use qwenode\yii2lightning\validators\DomainValidator;
-use qwephp\assert\Assertion;
+use qwephp\AA;
 use Yii;
 
 /**
@@ -161,7 +161,7 @@ class RuleBuilder
     public static function pattern(string $field, string $pattern, ?string $message = null)
     {
         $r = [[$field], 'match', 'pattern' => $pattern];
-        if (Assertion::notNull($message)) {
+        if (AA::notNull($message)) {
             $r['message'] = $message;
         }
         return $r;
@@ -212,7 +212,7 @@ class RuleBuilder
     public static function domain(string $field, ?string $message = null): array
     {
         $r = [[$field], DomainValidator::class];
-        if (Assertion::notNull($message)) {
+        if (AA::notNull($message)) {
             $r = self::withMessage($r, $message);
         }
         return $r;

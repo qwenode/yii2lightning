@@ -6,7 +6,7 @@ namespace qwenode\yii2lightning;
 
 use ErrorException;
 use Exception;
-use qwephp\assert\Assertion;
+use qwephp\AA;
 use Redis;
 use Throwable;
 use Yii;
@@ -163,7 +163,7 @@ class LightningHelper
         if ($message == null) {
             $message = '数据不存在';
         }
-        if (Assertion::isNull($var)) {
+        if (AA::isNull($var)) {
             throw new ErrorException($message, $code);
         }
     }

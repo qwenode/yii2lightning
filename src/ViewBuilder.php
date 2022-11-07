@@ -2,8 +2,8 @@
 
 namespace qwenode\yii2lightning;
 
-use qwephp\assert\Assertion;
-use qwephp\StrHelper;
+use qwephp\AA;
+use qwephp\SS;
 use yii\base\InvalidConfigException;
 
 class ViewBuilder
@@ -53,7 +53,7 @@ class ViewBuilder
         $current = LightningHelper::getRequest()->getUrl();
         $tpl     = ' href="%s" class="%s" ';
         $match[] = $url;
-        if (StrHelper::containArray($current, $match)) {
+        if (SS::containArray($current, $match)) {
             return sprintf($tpl, $url, $appendClass . ' ' . $activeClass);
         }
         return sprintf($tpl, $url, $appendClass);
@@ -75,7 +75,7 @@ class ViewBuilder
             'attribute' => $attribute,
             'value'     => $callable,
         ];
-        if (Assertion::notNull($format)) {
+        if (AA::notNull($format)) {
             $attr['format'] = $format;
         }
         return $attr;
@@ -87,7 +87,7 @@ class ViewBuilder
             'label' => $label,
             'value' => $callable,
         ];
-        if (Assertion::notNull($format)) {
+        if (AA::notNull($format)) {
             $attr['format'] = $format;
         }
         return $attr;
