@@ -90,10 +90,30 @@ class QueryConditionBuilder
     {
         return ['<=', $field, $value];
     }
-
+    
     /**
      * @param string $field
-     * @param $list
+     * @param $left
+     * @param $right
+     * @return array
+     */
+    public static function notBetween(string $field, $left, $right): array
+    {
+        return ['not between',$field,$left,$right];
+    }
+    /**
+     * @param string $field
+     * @param $left
+     * @param $right
+     * @return array
+     */
+    public static function between(string $field,$left,$right)
+    {
+        return ['between',$field,$left,$right];
+    }
+    /**
+     * @param string $field
+     * @param array $list
      * @return array
      */
     public static function in(string $field, $list): array
@@ -103,7 +123,7 @@ class QueryConditionBuilder
 
     /**
      * @param string $field
-     * @param $list
+     * @param array $list
      * @return array
      */
     public static function notIn(string $field, $list): array
