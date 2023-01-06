@@ -11,7 +11,33 @@ use Yii;
  */
 class RuleBuilder
 {
-    public static function boolean(...$fields): array
+    /**
+     * @param array $rule
+     * @param string ...$scenarios
+     * @return array
+     */
+    public static function onScenario(array $rule,string ...$scenarios)
+    {
+        $rule['on'] = $scenarios;
+        return $rule;
+    }
+    
+    /**
+     * @param array $rule
+     * @param string ...$scenarios
+     * @return array
+     */
+    public static function exceptScenario(array $rule,string ...$scenarios)
+    {
+        $rule['except'] = $scenarios;
+        return $rule;
+    }
+    
+    /**
+     * @param ...$fields
+     * @return array
+     */
+    public static function boolean(string ...$fields): array
     {
         return [$fields, 'boolean'];
     }
