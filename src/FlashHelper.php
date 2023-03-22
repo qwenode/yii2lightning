@@ -21,7 +21,23 @@ class FlashHelper
     {
         \Yii::$app->session->setFlash('error', static::getFirstMessage($message, $params));
     }
-
+    
+    public static function removeInfoMessage()
+    {
+        \Yii::$app->session->removeFlash('info');
+    }
+    public static function removeSuccessMessage()
+    {
+        \Yii::$app->session->removeFlash('success');
+    }
+    public static function removeErrorMessage()
+    {
+        \Yii::$app->session->removeFlash('error');
+    }
+    public static function removeAllMessages()
+    {
+        \Yii::$app->session->removeAllFlashes();
+    }
     /**
      * @param array|Model|string $messages
      * @return array|mixed|string
