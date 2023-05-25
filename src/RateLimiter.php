@@ -74,13 +74,18 @@ class RateLimiter
 
     public function hit(): void
     {
+        $prev = (int)$this->_cache->get($this->_uniqueIdentifier)+1;
         if ($this->_isRedis) {
-            $this->_cache->incr($this->_uniqueIdentifier);
+            $next = (int)$this->_cache->incr($this->_uniqueIdentifier);
             $this->_cache->expire($this->_uniqueIdentifier, $this->_lifetime);
         } else {
             $v = (int)$this->_cache->get($this->_uniqueIdentifier);
             $v++;
+            $next = $v;
             $this->_cache->set($this->_uniqueIdentifier, $v, $this->_lifetime, new TagDependency(['tags' => $this->_collection]));
+        }
+        if ($prev != $next) {
+            throw new RateLimitExceededException('Rate limit exceeded');
         }
     }
 
