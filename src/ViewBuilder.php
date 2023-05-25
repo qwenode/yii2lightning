@@ -69,12 +69,15 @@ class ViewBuilder
         return ['type' => 'date', 'value' => $format, ...$options];
     }
     
-    public static function gridViewAttribute(string $attribute, callable $callable, ?string $format = null)
+    public static function gridViewAttribute(string $attribute, callable $callable, ?string $format = null, ?string $label = null)
     {
         $attr = [
             'attribute' => $attribute,
             'value'     => $callable,
         ];
+        if ($label != null) {
+            $attr['label'] = $label;
+        }
         if (AA::notNull($format)) {
             $attr['format'] = $format;
         }
