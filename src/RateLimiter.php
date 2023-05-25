@@ -29,7 +29,7 @@ class RateLimiter
     protected int $_limit;
     protected int $_lifetime;
     protected bool $_isRedis = false;
-
+    protected int $shouldBe;
     public function __construct(string $collection, int $limit, int $minutes)
     {
         if ($minutes < 1) {
@@ -39,13 +39,14 @@ class RateLimiter
         $this->_uniqueIdentifier = $this->_collection;
         $this->_limit            = $limit;
         $this->_lifetime         = $minutes * 60;
-
+        
         if (LightningHelper::getApplication()->has('redis')) {
             $this->_cache   = LightningHelper::getRedis();
             $this->_isRedis = true;
         } else {
             $this->_cache = LightningHelper::getCache();
         }
+        $this->shouldBe = (int)$this->_cache->get($this->_uniqueIdentifier)+1;
     }
 
     public static function withCollection(string $collection, int $limit = 5, int $minutes = 5): static
@@ -65,16 +66,12 @@ class RateLimiter
         if ($minutes < 1) {
             $minutes = 1;
         }
-        $rateLimiter                    = clone $this;
-        $rateLimiter->_uniqueIdentifier = strtoupper(sprintf('%s:%s', $this->_collection, sha1($uniqueIdentifier . $limit)));
-        $rateLimiter->_limit            = $limit;
-        $rateLimiter->_lifetime         = $minutes * 60;
-        return $rateLimiter;
+        return new static(strtoupper(sprintf('%s:%s', $this->_collection,
+            sha1($uniqueIdentifier . $limit))),$limit,$minutes*60);
     }
 
     public function hit(): void
     {
-        $prev = (int)$this->_cache->get($this->_uniqueIdentifier)+1;
         if ($this->_isRedis) {
             $next = (int)$this->_cache->incr($this->_uniqueIdentifier);
             $this->_cache->expire($this->_uniqueIdentifier, $this->_lifetime);
@@ -84,7 +81,7 @@ class RateLimiter
             $next = $v;
             $this->_cache->set($this->_uniqueIdentifier, $v, $this->_lifetime, new TagDependency(['tags' => $this->_collection]));
         }
-        if ($prev != $next) {
+        if ($this->shouldBe != $next) {
             throw new RateLimitExceededException('Rate limit exceeded');
         }
     }
