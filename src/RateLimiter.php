@@ -58,8 +58,8 @@ class RateLimiter
     
     /**
      * 最终的key=LIGHTING_RATE_LIMITER:parent-collection:factor-collection
-     * @param string $collection 根据唯一ID进行限制
-     * @param int $limit 此参数也会加入ID计算规则,同样的 $uniqueIdentifier 不同的 $limit 则 限制计数不会冲突
+     * @param string $collection
+     * @param int $limit
      * @param int $minutes
      * @return RateLimiter
      */
