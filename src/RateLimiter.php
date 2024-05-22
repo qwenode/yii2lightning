@@ -3,7 +3,6 @@
 namespace qwenode\yii2lightning;
 
 use ErrorException;
-use qwephp\AA;
 use qwephp\SS;
 use yii\caching\Cache;
 use yii\caching\CacheInterface;
@@ -31,17 +30,17 @@ class RateLimiter
     protected int $_lifetime;
     protected bool $_isRedis = false;
     protected int $shouldBe;
-    
+
     protected function __construct(string $collection, int $limit, int $minutes)
     {
         if ($minutes < 1) {
             $minutes = 1;
         }
-        $collection              = SS::removeSpecialChar($collection);
-        $this->_collection       = strtoupper(sprintf('LIGHTING_RATE_LIMITER:%s', $collection));
-        $this->_limit            = $limit;
-        $this->_lifetime         = $minutes * 60;
-        
+        $collection        = SS::removeSpecialChar($collection);
+        $this->_collection = strtoupper(sprintf('LIGHTING_RATE_LIMITER:%s', $collection));
+        $this->_limit      = $limit;
+        $this->_lifetime   = $minutes * 60;
+
         if (LightningHelper::getApplication()->has('redis')) {
             $this->_cache   = LightningHelper::getRedis();
             $this->_isRedis = true;
@@ -50,17 +49,19 @@ class RateLimiter
         }
         $this->shouldBe = (int)$this->_cache->get($this->_collection) + 1;
     }
-    
+
     public static function withCollection(string $collection, int $limit = 5, int $minutes = 5): static
     {
         return new static($collection, $limit, $minutes);
     }
-    
+
     /**
      * 最终的key=LIGHTING_RATE_LIMITER:parent-collection:factor-collection
+     *
      * @param string $collection
-     * @param int $limit
-     * @param int $minutes
+     * @param int    $limit
+     * @param int    $minutes
+     *
      * @return RateLimiter
      */
     public function factor(string $collection, int $limit, int $minutes = 5): RateLimiter
@@ -75,22 +76,22 @@ class RateLimiter
         $rateLimiter->setLifeTime($minutes * 60);
         return $rateLimiter;
     }
-    
-    public function setLifeTime(int $lifeTime)
-    {
-        $this->_lifetime = $lifeTime;
-    }
-    
-    public function setLimit(int $limit)
-    {
-        $this->_limit = $limit;
-    }
-    
+
     public function setCollection(string $value)
     {
         $this->_collection = $value;
     }
-    
+
+    public function setLimit(int $limit)
+    {
+        $this->_limit = $limit;
+    }
+
+    public function setLifeTime(int $lifeTime)
+    {
+        $this->_lifetime = $lifeTime;
+    }
+
     public function hit(): void
     {
         if ($this->_isRedis) {
@@ -106,7 +107,7 @@ class RateLimiter
             throw new RateLimitExceededException('Rate limit exceeded');
         }
     }
-    
+
     public function invalidateFactor(): void
     {
         if ($this->_isRedis) {
@@ -115,7 +116,7 @@ class RateLimiter
             $this->_cache->delete($this->_collection);
         }
     }
-    
+
     public function invalidateCollection(): void
     {
         if ($this->_isRedis) {
@@ -125,21 +126,21 @@ class RateLimiter
             TagDependency::invalidate($this->_cache, $this->_collection);
         }
     }
-    
-    public function verify(): bool
-    {
-        $v = (int)$this->_cache->get($this->_collection);
-        return $v < $this->_limit;
-    }
-    
+
     /**
      * @return void
      * @throws RateLimitExceededException
      */
-    public function verifyOrThrow(string $message = 'Rate limit exceeded'): void
+    public function verifyOrThrow(string $message = 'Rate limit exceeded', int $code = 429): void
     {
         if (!$this->verify()) {
-            throw new RateLimitExceededException($message);
+            throw new RateLimitExceededException($message,$code);
         }
+    }
+
+    public function verify(): bool
+    {
+        $v = (int)$this->_cache->get($this->_collection);
+        return $v < $this->_limit;
     }
 }
