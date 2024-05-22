@@ -39,7 +39,7 @@ class Reqs
     public static function isPOSTOrThrow()
     {
         if (!self::isPOST()) {
-            throw new ErrorException('request method not allowed');
+            throw new ErrorException('request method not allowed',405);
         }
     }
     
@@ -49,7 +49,7 @@ class Reqs
     public static function isGETOrThrow()
     {
         if (!self::isGET()) {
-            throw new ErrorException('request method not allowed');
+            throw new ErrorException('request method not allowed',405);
         }
     }
     
