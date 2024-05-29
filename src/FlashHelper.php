@@ -21,7 +21,11 @@ class FlashHelper
     {
         \Yii::$app->session->setFlash('error', static::getFirstMessage($message, $params));
     }
-    
+
+    public static function warning($message, ...$params)
+    {
+        \Yii::$app->session->setFlash('warning', static::getFirstMessage($message, $params));
+    }
     public static function removeInfoMessage()
     {
         \Yii::$app->session->removeFlash('info');
@@ -33,6 +37,10 @@ class FlashHelper
     public static function removeErrorMessage()
     {
         \Yii::$app->session->removeFlash('error');
+    }
+    public static function removeWarningMessage()
+    {
+        \Yii::$app->session->removeFlash('warning');
     }
     public static function removeAllMessages()
     {
