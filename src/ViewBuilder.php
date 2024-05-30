@@ -95,4 +95,43 @@ class ViewBuilder
         }
         return $attr;
     }
+
+
+//适用于GridView 与 DetailView 快速输入
+    const ATTRIBUTE = 'attribute';
+    const VALUE = 'value';
+    const LABEL = 'label';
+
+    const FORMAT = 'format';
+    const FORMAT_RAW = 'raw';
+    const FORMAT_HTML = 'html';
+    const FORMAT_TEXT = 'text';
+    const FORMAT_NTEXT = 'ntext';
+    /**
+     * 这个值被格式化为包含在 <p> 标签中的 HTML 编码的文本段落。
+     */
+    const FORMAT_PARAGRAPHS = 'paragraphs';
+    const FORMAT_EMAIL = 'email';
+    const FORMAT_IMAGE = 'image';
+    const FORMAT_URL = 'url';
+    const FORMAT_BOOLEAN = 'boolean';
+
+    const OPTIONS = 'options';
+    const DROPDOWN_PROMPT_ALL = [
+        'prompt' => '全部',
+    ];
+    const DROPDOWN_PROMPT_CHOOSE = [
+        'prompt' => '请选择',
+    ];
+    const DROPDOWN_PROMPT_NULL = [
+        'prompt' => '默认空',
+    ];
+    const PLACEHOLDER = 'placeholder';
+
+    const ENCTYPE = 'enctype';
+    const ENCTYPE_MULTIPART_FORM_DATA = 'multipart/form-data';
+    const FORM_UPLOAD_OPTIONS = [
+        self::ENCTYPE => self::ENCTYPE_MULTIPART_FORM_DATA,
+    ];//ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data']])
+
 }

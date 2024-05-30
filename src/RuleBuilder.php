@@ -94,7 +94,7 @@ class RuleBuilder
     
     public static function integerRange(int $min, int $max, string ...$fields): array
     {
-        return [$fields, 'integer', 'min' => $min, 'max' => $max];
+        return [$fields, self::INTEGER, 'min' => $min, 'max' => $max];
     }
     
     public static function number(string ...$fields): array
@@ -136,7 +136,7 @@ class RuleBuilder
     
     public static function in(string $field, array $range, bool $strict = false): array
     {
-        return [[$field], 'in', 'range' => $range, 'strict' => $strict];
+        return [[$field], self::IN, 'range' => $range, 'strict' => $strict];
     }
     
     /**
@@ -252,7 +252,7 @@ class RuleBuilder
      */
     public static function filter(callable $callable, ...$fields): array
     {
-        return [$fields, 'filter', 'filter' => $callable];
+        return [$fields, self::FILTER, self::FILTER => $callable];
     }
     
     /**
@@ -262,12 +262,12 @@ class RuleBuilder
      */
     public static function url(...$fields)
     {
-        return [$fields, 'url'];
+        return [$fields, self::URL];
     }
     
     public static function stripTags(...$fields): array
     {
-        return [$fields, 'filter', 'filter' => 'strip_tags'];
+        return [$fields, self::FILTER, self::FILTER => 'strip_tags'];
     }
     
     public static function filterToUnixTime(...$fields): array
@@ -281,4 +281,30 @@ class RuleBuilder
             return $strtotime;
         }, ...$fields);
     }
+
+    const URL = 'url';
+    const REQUIRED = 'required';
+    const FILE = 'file';
+    const FILE_SKIP_ON_EMPTY = 'skipOnEmpty';
+    const FILE_EXTENSIONS = 'extensions';
+    const IN = 'in';
+    const IN_RANGE = 'range';
+    const STRING = 'string';
+    const STRING_MIN = 'min';
+    const STRING_MAX = 'max';
+    CONST FILTER='filter';
+    const DEFAULT = 'default';
+    const INTEGER = 'integer';
+    const NUMBER = 'number';
+    const NUMBER_MIN = 'min';
+    const NUMBER_MAX = 'max';
+    const DEFAULT_VALUE = 'value';
+    const UNIQUE = 'unique';
+    const UNIQUE_TARGET_ATTRIBUTE = 'targetAttribute';
+    const EMAIL = 'email';
+    const WHEN = 'when';
+    const INTEGER_MIN = 'min';
+    const INTEGER_MAX = 'max';
+    const BETWEEN = 'between';
+    const TRIM = 'trim';
 }
