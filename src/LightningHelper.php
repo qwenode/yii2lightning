@@ -32,6 +32,7 @@ use yii\web\User;
  * 所有Yii快捷访问方式,工具集合等
  * Class LightningHelper
  * @package qwenode\yii2lightning
+ * @deprecated
  */
 class LightningHelper
 {
