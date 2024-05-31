@@ -21,7 +21,7 @@
       "qwenode\\yii2lightning\\": "src/"
     },
     "files": [
-      "src/quick_const.php"
+      "src/enums.php"
     ]
   },
   "config": {

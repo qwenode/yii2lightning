@@ -21,6 +21,9 @@ const VIEW_OPTIONS         = 'options';
 const VIEW_DROPDOWN_PROMPT = [
     'prompt' => '全部',
 ];
+const VIEW_DROPDOWN_PROMPT_CHOOSE = [
+    'prompt' => '请选择',
+];
 const VIEW_PLACEHOLDER     = 'placeholder';
 
 const VIEW_ENCTYPE                    = 'enctype';
@@ -54,27 +57,3 @@ const MODEL_RULE_INTEGER_MIN             = 'min';
 const MODEL_RULE_INTEGER_MAX             = 'max';
 const MODEL_QUERY_BETWEEN                = 'between';
 const MODEL_RULE_TRIM                    = 'trim';
-
-//常用时间数字
-const TIME_SECONDS_LABEL = 'seconds';
-const TIME_MINUTES_LABEL = 'minutes';
-const TIME_HOURS_LABEL   = 'hours';
-
-const TIME_NUMBER_1     = 1;
-const TIME_NUMBER_3     = 3;
-const TIME_NUMBER_5     = 5;
-const TIME_NUMBER_7     = 7;
-const TIME_NUMBER_10    = 10;
-const TIME_NUMBER_12    = 12;
-const TIME_NUMBER_15    = 15;
-const TIME_NUMBER_20    = 20;
-const TIME_NUMBER_24    = 24;
-const TIME_NUMBER_30    = 30;
-const TIME_NUMBER_60    = 60;
-const TIME_NUMBER_180   = 180;
-const TIME_NUMBER_300   = 300;
-const TIME_NUMBER_600   = 600;
-const TIME_NUMBER_1800  = 1800;
-const TIME_NUMBER_3600  = 3600;
-const TIME_NUMBER_43200 = 43200;
-const TIME_NUMBER_86400 = 86400;
