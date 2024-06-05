@@ -387,16 +387,25 @@ class QQ
     
     public static function asDate($value, $format = NULL)
     {
+        if ($value == null || $value <= 0) {
+            return null;
+        }
         return Yii::$app->getFormatter()->asDate($value, $format);
     }
     
     public static function asDatetime($value, $format = NULL)
     {
+        if ($value == null || $value <= 0) {
+            return null;
+        }
         return Yii::$app->getFormatter()->asDatetime($value, $format);
     }
     
     public static function asTime($value, $format = NULL)
     {
+        if ($value == null || $value <= 0) {
+            return null;
+        }
         return Yii::$app->getFormatter()->asTime($value, $format);
     }
 }
