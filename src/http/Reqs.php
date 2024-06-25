@@ -20,9 +20,14 @@ class Reqs
     public static function getJsonBodyAsArray()
     {
         $rawBody = static::request()->getRawBody();
-        return json_decode($rawBody, true);
+        return (array)json_decode($rawBody, true);
     }
-
+    
+    public static function getJsonID()
+    {
+        $jsonBodyAsArray = self::getJsonBodyAsArray();
+        return $jsonBodyAsArray['id'] ?? 0;
+    }
     /**
      * @return \yii\console\Request|Request
      */
