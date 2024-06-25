@@ -26,7 +26,7 @@ class Reqs
     public static function getJsonID()
     {
         $jsonBodyAsArray = self::getJsonBodyAsArray();
-        return $jsonBodyAsArray['id'] ?? 0;
+        return key_exists('id',$jsonBodyAsArray) ?intval($jsonBodyAsArray['id']): 0;
     }
     /**
      * @return \yii\console\Request|Request
