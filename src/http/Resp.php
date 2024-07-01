@@ -38,13 +38,13 @@ class Resp
     public static function data($data, $msg = 'ok'): array
     {
         return [
-            'code' => 1,
+            'code' => 200,
             'msg'  => $msg,
             'data' => $data,
         ];
     }
     
-    public static function success($msg = 'ok', $code = 1): array
+    public static function success($msg = 'ok', $code = 200): array
     {
         return [
             'code' => $code,
@@ -52,7 +52,7 @@ class Resp
         ];
     }
     
-    public static function error($msg, $code = 0): array
+    public static function error($msg, $code = 500): array
     {
         return [
             'code' => $code,
