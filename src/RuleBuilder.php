@@ -174,7 +174,7 @@ class RuleBuilder
     }
     
     /**
-     * 紧允许大小写字母和数字
+     * 仅允许大小写字母和数字
      * @param $field
      * @param string|null $message
      * @return array
@@ -182,6 +182,16 @@ class RuleBuilder
     public static function alphabetAndNumber($field, ?string $message = null): array
     {
         return self::pattern($field, '/^[a-z0-9A-Z]+$/', $message);
+    }
+    /**
+     * 仅允许大小写字母
+     * @param $field
+     * @param string|null $message
+     * @return array
+     */
+    public static function alphabet($field, ?string $message = null): array
+    {
+        return self::pattern($field, '/^[a-zA-Z]+$/', $message);
     }
     
     public static function pattern(string $field, string $pattern, ?string $message = null)
